@@ -11,9 +11,7 @@
     "prepare": "husky",
     "format": "prettier --cache --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc -b --noEmit",
-    "test": "vitest",
-    "test:run": "vitest run"
+    "typecheck": "tsc -b --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
