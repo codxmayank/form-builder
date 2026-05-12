@@ -1,5 +1,6 @@
 import { lazy, Suspense, type ReactNode } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
+import Layout from '@/components/Layout';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const BuilderPage = lazy(() => import('@/pages/BuilderPage'));
@@ -22,55 +23,60 @@ function LazyPage({ children }: { children: ReactNode }) {
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: (
-      <LazyPage>
-        <HomePage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '/builder/new',
-    element: (
-      <LazyPage>
-        <BuilderPage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '/builder/:templateId',
-    element: (
-      <LazyPage>
-        <BuilderPage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '/fill/:templateId',
-    element: (
-      <LazyPage>
-        <FillPage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '/fill/:templateId/:instanceId',
-    element: (
-      <LazyPage>
-        <FillPage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '/instances/:templateId',
-    element: (
-      <LazyPage>
-        <InstancesPage />
-      </LazyPage>
-    )
-  },
-  {
-    path: '*',
-    element: <Navigate to="/" replace />
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: (
+          <LazyPage>
+            <HomePage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/builder/new',
+        element: (
+          <LazyPage>
+            <BuilderPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/builder/:templateId',
+        element: (
+          <LazyPage>
+            <BuilderPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/fill/:templateId',
+        element: (
+          <LazyPage>
+            <FillPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/fill/:templateId/:instanceId',
+        element: (
+          <LazyPage>
+            <FillPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/instances/:templateId',
+        element: (
+          <LazyPage>
+            <InstancesPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '*',
+        element: <Navigate to="/" replace />
+      }
+    ]
   }
 ]);
