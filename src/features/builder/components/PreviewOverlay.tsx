@@ -25,7 +25,7 @@ export default function PreviewOverlay({
       }}
     >
       <div
-        className="w-full max-w-2xl rounded-xl bg-white p-8 shadow-2xl"
+        className="w-full max-w-2xl rounded-xl bg-white p-4 shadow-2xl sm:p-8"
         role="dialog"
         aria-modal="true"
       >

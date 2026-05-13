@@ -41,7 +41,7 @@ export default function BuilderLayout() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-57px)] flex-col">
+    <div className="flex h-[calc(100dvh-57px)] flex-col">
       <div className="flex items-center justify-between border-b border-gray-200 bg-white px-3 py-2 sm:px-4">
         <input
           type="text"
@@ -72,7 +72,7 @@ export default function BuilderLayout() {
           <button
             type="button"
             onClick={() => setConfirmingDelete(true)}
-            className="hidden rounded-lg border border-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 sm:inline-flex"
+            className="rounded-lg border border-red-200 px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 sm:px-3 sm:text-sm"
           >
             Delete
           </button>
@@ -99,7 +99,7 @@ export default function BuilderLayout() {
       {/* Mobile slide-over panel */}
       {mobilePanel && (
         <div className="border-b border-gray-200 bg-white sm:hidden">
-          <div className="max-h-64 overflow-y-auto">
+          <div className="max-h-72 overflow-y-auto sm:max-h-80">
             {mobilePanel === 'palette' ? <FieldPalette /> : <ConfigPanel />}
           </div>
         </div>

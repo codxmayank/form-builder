@@ -39,7 +39,7 @@ export const CanvasField = memo(function CanvasField({
           onSelect();
         }
       }}
-      className={`group cursor-pointer rounded-lg border-2 p-4 transition-colors ${
+      className={`group cursor-pointer rounded-lg border-2 p-3 transition-colors sm:p-4 ${
         isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'
       }`}
     >
@@ -60,7 +60,9 @@ export const CanvasField = memo(function CanvasField({
           </span>
           <span className="truncate text-sm text-gray-900">{field.label || 'Untitled field'}</span>
         </div>
-        <div className="flex shrink-0 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+        <div
+          className={`flex shrink-0 gap-1 transition-opacity ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+        >
           <button
             type="button"
             onClick={(e) => {
