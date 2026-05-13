@@ -2,6 +2,18 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Ensure all interactive elements show pointer cursor */
+button,
+[role='button'],
+[role='link'],
+a,
+select,
+summary,
+label:has(input[type='checkbox']),
+label:has(input[type='radio']) {
+  cursor: pointer;
+}
+
 /* Dark mode defaults for form controls in config panels */
 .dark input[type='text'],
 .dark input[type='number'],
