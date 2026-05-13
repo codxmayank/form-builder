@@ -31,7 +31,7 @@ export default function BuilderLayout() {
       addTemplate(updated);
     }
     markClean();
-    navigate('/', { replace: true });
+    navigate('/', { replace: true, state: { saved: true } });
   }
 
   function confirmDelete() {
