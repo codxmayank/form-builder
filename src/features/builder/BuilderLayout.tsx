@@ -43,7 +43,7 @@ export default function BuilderLayout() {
   return (
     <div className="flex h-[calc(100dvh-57px)] flex-col">
       {/* Toolbar — stacks on mobile, single row on sm+ */}
-      <div className="border-b border-gray-200 bg-white px-3 py-2 sm:px-4 dark:border-gray-800 dark:bg-gray-950">
+      <div className="border-b border-gray-200 bg-white px-4 py-2 sm:px-6 lg:px-8 dark:border-gray-800 dark:bg-gray-950">
         {/* Row 1: title + desktop-only actions */}
         <div className="flex items-center gap-2">
           <input

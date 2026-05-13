@@ -4,7 +4,7 @@ export default function SuccessPage() {
   const { templateId } = useParams();
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-20 text-center">
+    <div className="mx-auto max-w-lg px-4 py-20 text-center sm:px-6 lg:px-8">
       <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
         <svg
           className="h-8 w-8 text-green-600 dark:text-green-400"
