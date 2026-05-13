@@ -7,6 +7,8 @@ import SingleSelectConfig from './configs/SingleSelectConfig';
 import MultiSelectConfig from './configs/MultiSelectConfig';
 import FileUploadConfig from './configs/FileUploadConfig';
 import SectionHeaderConfig from './configs/SectionHeaderConfig';
+import CalculationConfig from './configs/CalculationConfig';
+import ConditionEditor from './configs/ConditionEditor';
 
 const TYPE_LABELS: Record<FormField['type'], string> = {
   'single-line-text': 'Short Text',
@@ -25,6 +27,7 @@ export default function ConfigPanel() {
     if (!s.selectedFieldId) return null;
     return s.template?.fields.find((f) => f.id === s.selectedFieldId) ?? null;
   });
+  const allFields = useBuilderStore((s) => s.template?.fields ?? []);
   const updateField = useBuilderStore((s) => s.updateField);
 
   if (!field) {
@@ -62,13 +65,30 @@ export default function ConfigPanel() {
 
         <hr className="border-gray-200" />
 
-        {renderConfig(field, update)}
+        {renderConfig(field, allFields, update)}
+
+        {/* Conditions — available on all field types except section-header */}
+        {field.type !== 'section-header' && (
+          <>
+            <hr className="border-gray-200" />
+            <ConditionEditor
+              conditions={field.conditions}
+              allFields={allFields}
+              currentFieldId={field.id}
+              onChange={(conditions) => update({ conditions })}
+            />
+          </>
+        )}
       </div>
     </div>
   );
 }
 
-function renderConfig(field: FormField, onChange: (updates: Partial<FormField>) => void) {
+function renderConfig(
+  field: FormField,
+  allFields: FormField[],
+  onChange: (updates: Partial<FormField>) => void
+) {
   switch (field.type) {
     case 'single-line-text':
     case 'multi-line-text':
@@ -85,6 +105,8 @@ function renderConfig(field: FormField, onChange: (updates: Partial<FormField>) 
       return <FileUploadConfig field={field} onChange={onChange} />;
     case 'section-header':
       return <SectionHeaderConfig field={field} onChange={onChange} />;
+    case 'calculation':
+      return <CalculationConfig field={field} allFields={allFields} onChange={onChange} />;
     default:
       return <p className="text-xs text-gray-400">Configuration coming soon</p>;
   }

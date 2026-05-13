@@ -6,6 +6,7 @@ import SingleSelectRenderer from '@/features/fill/renderers/SingleSelectRenderer
 import MultiSelectRenderer from '@/features/fill/renderers/MultiSelectRenderer';
 import FileUploadRenderer from '@/features/fill/renderers/FileUploadRenderer';
 import SectionHeaderRenderer from '@/features/fill/renderers/SectionHeaderRenderer';
+import CalculationRenderer from '@/features/fill/renderers/CalculationRenderer';
 
 export default function PreviewOverlay({
   title,
@@ -89,12 +90,7 @@ function renderPreviewField(field: FormField) {
       return <FileUploadRenderer field={field} onChange={() => {}} />;
     case 'section-header':
       return <SectionHeaderRenderer field={field} />;
-    default:
-      return (
-        <div className="rounded-lg border border-gray-200 px-4 py-3">
-          <p className="text-sm font-medium text-gray-900">{field.label || 'Untitled field'}</p>
-          <p className="text-xs text-gray-400">{field.type}</p>
-        </div>
-      );
+    case 'calculation':
+      return <CalculationRenderer field={field} />;
   }
 }
