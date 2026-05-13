@@ -63,6 +63,17 @@ export function validateField(field: FormField, value: unknown): string | null {
       if (required && files.length === 0) return 'Please upload a file';
       if (field.maxFiles !== null && files.length > field.maxFiles)
         return `Maximum ${field.maxFiles} file(s) allowed`;
+      if (field.allowedFileTypes.length > 0) {
+        for (const f of files) {
+          const meta = f as { type?: string; name?: string };
+          const ext = meta.name ? `.${meta.name.split('.').pop()?.toLowerCase()}` : '';
+          const mime = meta.type ?? '';
+          const allowed = field.allowedFileTypes.some(
+            (t) => t === mime || t === ext || (t.endsWith('/*') && mime.startsWith(t.slice(0, -1)))
+          );
+          if (!allowed) return `File type not allowed: ${meta.name ?? 'unknown'}`;
+        }
+      }
       return null;
     }
   }

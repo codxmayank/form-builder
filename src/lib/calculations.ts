@@ -6,7 +6,9 @@ export function calculate(
   aggregationType: AggregationType,
   decimalPlaces: number
 ): number | null {
-  const nums = sourceValues.filter((v): v is number => typeof v === 'number' && !Number.isNaN(v));
+  const nums = sourceValues
+    .map((v) => (typeof v === 'string' ? Number(v) : v))
+    .filter((v): v is number => typeof v === 'number' && !Number.isNaN(v));
 
   if (nums.length === 0) return null;
 

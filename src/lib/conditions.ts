@@ -73,7 +73,8 @@ export function resolveFieldState(
   values: Record<string, FieldValue>
 ): { visible: boolean; required: boolean } {
   let visible = field.defaultVisibility === 'visible';
-  let required = field.defaultRequired;
+  let required =
+    'required' in field ? (field as { required: boolean }).required : field.defaultRequired;
 
   for (const condition of field.conditions) {
     const targetValue = values[condition.targetFieldId] ?? null;
