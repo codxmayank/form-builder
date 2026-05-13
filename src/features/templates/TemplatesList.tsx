@@ -59,7 +59,7 @@ export default function TemplatesList() {
                   navigate(`/builder/${t.id}`);
                 }
               }}
-              className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:hover:shadow-lg dark:hover:shadow-black/20"
+              className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:hover:border-gray-500"
             >
               <h3 className="truncate font-medium text-gray-900 dark:text-white">
                 {t.title || 'Untitled Form'}
