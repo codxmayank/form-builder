@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useTemplateStore } from '@/stores/template-store';
 import { getInstancesByTemplate } from '@/lib/storage';
 import ConfirmDialog from '@/components/ConfirmDialog';
@@ -19,6 +19,7 @@ export default function TemplatesList() {
   const loadTemplates = useTemplateStore((s) => s.loadTemplates);
   const deleteTemplate = useTemplateStore((s) => s.deleteTemplate);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadTemplates();
@@ -47,10 +48,18 @@ export default function TemplatesList() {
         {templates.map((t) => {
           const responses = getInstancesByTemplate(t.id).length;
           return (
-            <Link
+            <div
               key={t.id}
-              to={`/builder/${t.id}`}
-              className="rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
+              role="link"
+              tabIndex={0}
+              onClick={() => navigate(`/builder/${t.id}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate(`/builder/${t.id}`);
+                }
+              }}
+              className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
             >
               <h3 className="font-medium text-gray-900 dark:text-white">
                 {t.title || 'Untitled Form'}
@@ -73,7 +82,6 @@ export default function TemplatesList() {
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.preventDefault();
                     e.stopPropagation();
                     setDeletingId(t.id);
                   }}
@@ -82,7 +90,7 @@ export default function TemplatesList() {
                   Delete
                 </button>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
