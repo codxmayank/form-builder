@@ -27,7 +27,9 @@ export default function NumberRenderer({
       </label>
 
       <div className="mt-1 flex items-center gap-1">
-        {field.prefix && <span className="text-sm text-gray-500">{field.prefix}</span>}
+        {field.prefix && (
+          <span className="text-sm text-gray-500 dark:text-gray-400">{field.prefix}</span>
+        )}
         <input
           type="number"
           value={value}
@@ -39,7 +41,9 @@ export default function NumberRenderer({
           aria-invalid={!!error}
           aria-describedby={error ? `err-${field.id}` : undefined}
         />
-        {field.suffix && <span className="text-sm text-gray-500">{field.suffix}</span>}
+        {field.suffix && (
+          <span className="text-sm text-gray-500 dark:text-gray-400">{field.suffix}</span>
+        )}
       </div>
 
       {error && (

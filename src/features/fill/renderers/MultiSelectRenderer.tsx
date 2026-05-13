@@ -43,7 +43,7 @@ export default function MultiSelectRenderer({
       </div>
 
       {field.options.length === 0 && (
-        <p className="mt-1 text-xs text-gray-400">No options configured</p>
+        <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">No options configured</p>
       )}
 
       <div className="mt-1 flex justify-between">
@@ -55,7 +55,7 @@ export default function MultiSelectRenderer({
           <span />
         )}
         {showCount && (
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-400 dark:text-gray-500">
             {value.length} selected
             {field.maxSelections !== null ? ` / ${field.maxSelections} max` : ''}
           </p>

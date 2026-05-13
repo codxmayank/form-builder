@@ -42,7 +42,9 @@ export default function TextRenderer({
           />
         ) : (
           <div className="flex items-center gap-1">
-            {field.prefix && <span className="text-sm text-gray-500">{field.prefix}</span>}
+            {field.prefix && (
+              <span className="text-sm text-gray-500 dark:text-gray-400">{field.prefix}</span>
+            )}
             <input
               type="text"
               value={value}
@@ -52,7 +54,9 @@ export default function TextRenderer({
               aria-invalid={!!error}
               aria-describedby={error ? `err-${field.id}` : undefined}
             />
-            {field.suffix && <span className="text-sm text-gray-500">{field.suffix}</span>}
+            {field.suffix && (
+              <span className="text-sm text-gray-500 dark:text-gray-400">{field.suffix}</span>
+            )}
           </div>
         )}
       </div>
@@ -66,7 +70,7 @@ export default function TextRenderer({
           <span />
         )}
         {showCount && (
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-400 dark:text-gray-500">
             {charCount}
             {field.maxLength !== null ? ` / ${field.maxLength}` : ''}
           </p>

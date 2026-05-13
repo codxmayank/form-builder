@@ -10,14 +10,17 @@ export default function SectionHeaderConfig({
   return (
     <div className="space-y-4">
       <div>
-        <label htmlFor="cfg-size" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="cfg-size"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Heading size
         </label>
         <select
           id="cfg-size"
           value={field.size}
           onChange={(e) => onChange({ size: e.target.value as SectionHeaderSize })}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         >
           <option value="xl">Extra Large</option>
           <option value="lg">Large</option>
@@ -26,7 +29,7 @@ export default function SectionHeaderConfig({
           <option value="xs">Extra Small</option>
         </select>
       </div>
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-gray-400 dark:text-gray-500">
         Section headers are display-only — they don&apos;t collect any data.
       </p>
     </div>

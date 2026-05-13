@@ -79,7 +79,7 @@ export default function SingleSelectRenderer({
       </div>
 
       {field.options.length === 0 && (
-        <p className="mt-1 text-xs text-gray-400">No options configured</p>
+        <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">No options configured</p>
       )}
 
       {error && (

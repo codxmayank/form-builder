@@ -57,7 +57,7 @@ export default function InstancesPage() {
           <h1 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
             Submissions
           </h1>
-          <p className="mt-1 truncate text-sm text-gray-500">
+          <p className="mt-1 truncate text-sm text-gray-500 dark:text-gray-400">
             {template?.title || 'Untitled Form'}
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function InstancesPage() {
 
       {instances.length === 0 ? (
         <div className="mt-16 text-center">
-          <p className="text-gray-400">No submissions yet.</p>
+          <p className="text-gray-400 dark:text-gray-500">No submissions yet.</p>
           <Link
             to={`/fill/${templateId}`}
             className="mt-3 inline-block text-sm font-medium text-blue-600 hover:text-blue-700"
@@ -101,13 +101,19 @@ export default function InstancesPage() {
           <table className="w-full min-w-[500px] text-left text-sm">
             <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
-                <th className="px-4 py-3 font-medium text-gray-600">#</th>
-                <th className="px-4 py-3 font-medium text-gray-600">Submitted</th>
-                <th className="px-4 py-3 font-medium text-gray-600">Fields filled</th>
-                <th className="px-4 py-3 text-right font-medium text-gray-600">Actions</th>
+                <th className="px-4 py-3 font-medium text-gray-600 dark:text-gray-400">#</th>
+                <th className="px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                  Submitted
+                </th>
+                <th className="px-4 py-3 font-medium text-gray-600 dark:text-gray-400">
+                  Fields filled
+                </th>
+                <th className="px-4 py-3 text-right font-medium text-gray-600 dark:text-gray-400">
+                  Actions
+                </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
               {instances.map((instance, idx) => {
                 const filledCount = Object.values(instance.values).filter(
                   (v) => v != null && v !== '' && !(Array.isArray(v) && v.length === 0)
@@ -115,9 +121,11 @@ export default function InstancesPage() {
 
                 return (
                   <tr key={instance.id} className="hover:bg-gray-50 dark:hover:bg-gray-900">
-                    <td className="px-4 py-3 text-gray-500">{idx + 1}</td>
-                    <td className="px-4 py-3 text-gray-700">{formatDate(instance.submittedAt)}</td>
-                    <td className="px-4 py-3 text-gray-500">{filledCount}</td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{idx + 1}</td>
+                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                      {formatDate(instance.submittedAt)}
+                    </td>
+                    <td className="px-4 py-3 text-gray-500 dark:text-gray-400">{filledCount}</td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex justify-end gap-2">
                         <Link
@@ -129,7 +137,7 @@ export default function InstancesPage() {
                         <button
                           type="button"
                           onClick={() => downloadPdf(instance)}
-                          className="text-xs font-medium text-gray-600 hover:text-gray-800"
+                          className="text-xs font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                         >
                           PDF
                         </button>

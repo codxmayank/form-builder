@@ -53,7 +53,7 @@ export default function FileUploadRenderer({
           multiple={field.maxFiles !== 1}
           onChange={handleFiles}
           disabled={atLimit}
-          className="block w-full text-sm text-gray-500 file:mr-3 file:rounded-lg file:border-0 file:bg-gray-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-gray-700 hover:file:bg-gray-200 disabled:opacity-50"
+          className="block w-full text-sm text-gray-500 file:mr-3 file:rounded-lg file:border-0 file:bg-gray-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-gray-700 hover:file:bg-gray-200 disabled:opacity-50 dark:text-gray-400 dark:file:bg-gray-800 dark:file:text-gray-300 dark:hover:file:bg-gray-700"
           aria-invalid={!!error}
           aria-describedby={error ? `err-${field.id}` : undefined}
         />
@@ -66,13 +66,15 @@ export default function FileUploadRenderer({
               key={file.id}
               className="flex items-center justify-between rounded bg-gray-50 px-3 py-1.5 text-sm dark:bg-gray-900"
             >
-              <span className="truncate text-gray-700">{file.name}</span>
+              <span className="truncate text-gray-700 dark:text-gray-300">{file.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-gray-400">{formatSize(file.size)}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {formatSize(file.size)}
+                </span>
                 <button
                   type="button"
                   onClick={() => remove(i)}
-                  className="text-gray-400 hover:text-red-500"
+                  className="text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400"
                   aria-label={`Remove ${file.name}`}
                 >
                   <svg

@@ -20,7 +20,10 @@ export default function FileUploadConfig({
       </label>
 
       <div>
-        <label htmlFor="cfg-filetypes" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="cfg-filetypes"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Allowed file types
         </label>
         <input
@@ -36,13 +39,18 @@ export default function FileUploadConfig({
             })
           }
           placeholder="e.g. .pdf, .jpg, .png"
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
-        <p className="mt-1 text-xs text-gray-400">Comma-separated. Leave empty to allow all.</p>
+        <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+          Comma-separated. Leave empty to allow all.
+        </p>
       </div>
 
       <div>
-        <label htmlFor="cfg-maxfiles" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="cfg-maxfiles"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Max files
         </label>
         <input
@@ -51,7 +59,7 @@ export default function FileUploadConfig({
           min={1}
           value={field.maxFiles ?? ''}
           onChange={(e) => onChange({ maxFiles: e.target.value ? Number(e.target.value) : null })}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
       </div>
     </div>

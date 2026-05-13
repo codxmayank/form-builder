@@ -76,7 +76,7 @@ export default function ConditionEditor({
       </div>
 
       {conditions.length === 0 && (
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-gray-400 dark:text-gray-500">
           No conditions — field always follows default visibility.
         </p>
       )}
@@ -96,7 +96,7 @@ export default function ConditionEditor({
               onChange={(e) =>
                 updateCondition(condition.id, { effect: e.target.value as ConditionEffect })
               }
-              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             >
               {Object.entries(EFFECT_LABELS).map(([val, label]) => (
                 <option key={val} value={val}>
@@ -106,14 +106,14 @@ export default function ConditionEditor({
             </select>
 
             {/* When target field... */}
-            <div className="flex items-center gap-1 text-xs text-gray-500">
+            <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
               <span>when</span>
             </div>
 
             <select
               value={condition.targetFieldId}
               onChange={(e) => handleTargetChange(condition.id, e.target.value)}
-              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             >
               {targetableFields.map((f) => (
                 <option key={f.id} value={f.id}>
@@ -131,7 +131,7 @@ export default function ConditionEditor({
                   value: ''
                 })
               }
-              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             >
               {operators.map((op) => (
                 <option key={op} value={op}>
@@ -178,7 +178,7 @@ function ConditionValueInput({
       <select
         value={String(condition.value)}
         onChange={(e) => onValueChange(e.target.value)}
-        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
       >
         <option value="">Select a value</option>
         {targetField.options.map((opt) => (
@@ -212,7 +212,7 @@ function ConditionValueInput({
           </label>
         ))}
         {targetField.options.length === 0 && (
-          <p className="text-xs text-gray-400">No options defined yet</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">No options defined yet</p>
         )}
       </div>
     );
@@ -227,15 +227,15 @@ function ConditionValueInput({
           value={min}
           onChange={(e) => onValueChange(`${e.target.value},${max}`)}
           placeholder="Min"
-          className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
-        <span className="text-xs text-gray-400">to</span>
+        <span className="text-xs text-gray-400 dark:text-gray-500">to</span>
         <input
           type="number"
           value={max}
           onChange={(e) => onValueChange(`${min},${e.target.value}`)}
           placeholder="Max"
-          className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
       </div>
     );
@@ -248,7 +248,7 @@ function ConditionValueInput({
         type="date"
         value={String(condition.value)}
         onChange={(e) => onValueChange(e.target.value)}
-        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
       />
     );
   }
@@ -261,7 +261,7 @@ function ConditionValueInput({
         value={String(condition.value)}
         onChange={(e) => onValueChange(e.target.value ? Number(e.target.value) : '')}
         placeholder="Value"
-        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+        className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
       />
     );
   }
@@ -273,7 +273,7 @@ function ConditionValueInput({
       value={String(condition.value)}
       onChange={(e) => onValueChange(e.target.value)}
       placeholder="Value"
-      className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+      className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
     />
   );
 }

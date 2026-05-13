@@ -33,14 +33,17 @@ export default function SingleSelectConfig({
       </label>
 
       <div>
-        <label htmlFor="cfg-display" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="cfg-display"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Display as
         </label>
         <select
           id="cfg-display"
           value={field.displayType}
           onChange={(e) => onChange({ displayType: e.target.value as SingleSelectDisplayType })}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         >
           <option value="dropdown">Dropdown</option>
           <option value="radio">Radio buttons</option>
@@ -50,7 +53,7 @@ export default function SingleSelectConfig({
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-700">Options</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Options</span>
           <button
             type="button"
             onClick={addOption}
@@ -60,7 +63,7 @@ export default function SingleSelectConfig({
           </button>
         </div>
         {field.options.length === 0 && (
-          <p className="text-xs text-gray-400">No options yet. Add one above.</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">No options yet. Add one above.</p>
         )}
         <div className="space-y-2">
           {field.options.map((opt) => (
@@ -70,12 +73,12 @@ export default function SingleSelectConfig({
                 value={opt.label}
                 onChange={(e) => updateOption(opt.id, e.target.value)}
                 placeholder="Option label"
-                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
               />
               <button
                 type="button"
                 onClick={() => removeOption(opt.id)}
-                className="p-1 text-gray-400 hover:text-red-500"
+                className="p-1 text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400"
                 aria-label="Remove option"
               >
                 <svg

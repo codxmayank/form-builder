@@ -24,7 +24,9 @@ export default function CalculationRenderer({
           <span className="text-lg font-semibold text-gray-900 tabular-nums dark:text-white">
             {value != null ? value.toFixed(field.decimalPlaces) : '—'}
           </span>
-          <span className="text-xs text-gray-400">({AGG_LABELS[field.aggregationType]})</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500">
+            ({AGG_LABELS[field.aggregationType]})
+          </span>
         </div>
       </div>
     </div>

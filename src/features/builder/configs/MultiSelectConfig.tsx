@@ -34,7 +34,10 @@ export default function MultiSelectConfig({
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="cfg-minsel" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="cfg-minsel"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Min selections
           </label>
           <input
@@ -45,11 +48,14 @@ export default function MultiSelectConfig({
             onChange={(e) =>
               onChange({ minSelections: e.target.value ? Number(e.target.value) : null })
             }
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
         <div>
-          <label htmlFor="cfg-maxsel" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="cfg-maxsel"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Max selections
           </label>
           <input
@@ -60,14 +66,14 @@ export default function MultiSelectConfig({
             onChange={(e) =>
               onChange({ maxSelections: e.target.value ? Number(e.target.value) : null })
             }
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
       </div>
 
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-700">Options</span>
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Options</span>
           <button
             type="button"
             onClick={addOption}
@@ -77,7 +83,7 @@ export default function MultiSelectConfig({
           </button>
         </div>
         {field.options.length === 0 && (
-          <p className="text-xs text-gray-400">No options yet. Add one above.</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">No options yet. Add one above.</p>
         )}
         <div className="space-y-2">
           {field.options.map((opt) => (
@@ -87,12 +93,12 @@ export default function MultiSelectConfig({
                 value={opt.label}
                 onChange={(e) => updateOption(opt.id, e.target.value)}
                 placeholder="Option label"
-                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
               />
               <button
                 type="button"
                 onClick={() => removeOption(opt.id)}
-                className="p-1 text-gray-400 hover:text-red-500"
+                className="p-1 text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400"
                 aria-label="Remove option"
               >
                 <svg

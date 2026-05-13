@@ -14,7 +14,10 @@ export default function TextConfig({
   return (
     <div className="space-y-4">
       <div>
-        <label htmlFor="cfg-placeholder" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="cfg-placeholder"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Placeholder
         </label>
         <input
@@ -22,7 +25,7 @@ export default function TextConfig({
           type="text"
           value={field.placeholder}
           onChange={(e) => onChange({ placeholder: e.target.value })}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
       </div>
 
@@ -38,7 +41,10 @@ export default function TextConfig({
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label htmlFor="cfg-minlen" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="cfg-minlen"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Min length
           </label>
           <input
@@ -49,11 +55,14 @@ export default function TextConfig({
             onChange={(e) =>
               onChange({ minLength: e.target.value ? Number(e.target.value) : null })
             }
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
         <div>
-          <label htmlFor="cfg-maxlen" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="cfg-maxlen"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Max length
           </label>
           <input
@@ -64,14 +73,17 @@ export default function TextConfig({
             onChange={(e) =>
               onChange({ maxLength: e.target.value ? Number(e.target.value) : null })
             }
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
       </div>
 
       {isMultiLine ? (
         <div>
-          <label htmlFor="cfg-rows" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="cfg-rows"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Rows
           </label>
           <input
@@ -81,13 +93,16 @@ export default function TextConfig({
             max={20}
             value={(field as MultiLineTextField).rows}
             onChange={(e) => onChange({ rows: Number(e.target.value) } as Partial<TextField>)}
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="cfg-prefix" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="cfg-prefix"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Prefix
             </label>
             <input
@@ -96,11 +111,14 @@ export default function TextConfig({
               value={(field as SingleLineTextField).prefix}
               onChange={(e) => onChange({ prefix: e.target.value } as Partial<TextField>)}
               placeholder="e.g. $"
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             />
           </div>
           <div>
-            <label htmlFor="cfg-suffix" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="cfg-suffix"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Suffix
             </label>
             <input
@@ -109,7 +127,7 @@ export default function TextConfig({
               value={(field as SingleLineTextField).suffix}
               onChange={(e) => onChange({ suffix: e.target.value } as Partial<TextField>)}
               placeholder="e.g. kg"
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             />
           </div>
         </div>
