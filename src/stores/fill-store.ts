@@ -21,9 +21,16 @@ export const useFillStore = create<FillStore>((set, get) => ({
   errors: {},
 
   initForm: (template, initialValues) => {
+    // Build default values (e.g. prefill today for date fields)
+    const defaults: Record<string, import('@/types/template').FieldValue> = {};
+    for (const field of template.fields) {
+      if (field.type === 'date' && field.prefillToday) {
+        defaults[field.id] = new Date().toISOString().slice(0, 10);
+      }
+    }
     set({
       template,
-      values: initialValues ?? {},
+      values: { ...defaults, ...(initialValues ?? {}) },
       errors: {}
     });
   },
