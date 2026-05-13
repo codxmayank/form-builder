@@ -1,4 +1,9 @@
-import type { FormField, CalculationField } from '@/types/fields';
+import type {
+  FormField,
+  CalculationField,
+  SingleSelectField,
+  MultiSelectField
+} from '@/types/fields';
 import type { FieldValue, FormInstance, FormTemplate } from '@/types/template';
 import { resolveFieldState } from './conditions';
 import { calculate } from './calculations';
@@ -192,14 +197,25 @@ function formatValue(field: FormField, value: FieldValue): string {
     case 'single-line-text':
     case 'multi-line-text':
     case 'date':
-    case 'single-select':
-      return escapeHtml(String(value));
+    case 'single-select': {
+      const opts = (field as SingleSelectField).options;
+      const match = opts.find((o) => o.id === value);
+      return escapeHtml(match?.label ?? String(value));
+    }
 
     case 'number':
       return escapeHtml(String(value));
 
-    case 'multi-select':
-      return Array.isArray(value) ? (value as string[]).map(escapeHtml).join(', ') : '';
+    case 'multi-select': {
+      if (!Array.isArray(value)) return '';
+      const opts = (field as MultiSelectField).options;
+      return (value as string[])
+        .map((id) => {
+          const match = opts.find((o) => o.id === id);
+          return escapeHtml(match?.label ?? id);
+        })
+        .join(', ');
+    }
 
     case 'file-upload':
       if (!Array.isArray(value) || value.length === 0) return '';
