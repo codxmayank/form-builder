@@ -5,6 +5,8 @@ import NumberConfig from './configs/NumberConfig';
 import DateConfig from './configs/DateConfig';
 import SingleSelectConfig from './configs/SingleSelectConfig';
 import MultiSelectConfig from './configs/MultiSelectConfig';
+import FileUploadConfig from './configs/FileUploadConfig';
+import SectionHeaderConfig from './configs/SectionHeaderConfig';
 
 const TYPE_LABELS: Record<FormField['type'], string> = {
   'single-line-text': 'Short Text',
@@ -79,6 +81,10 @@ function renderConfig(field: FormField, onChange: (updates: Partial<FormField>) 
       return <SingleSelectConfig field={field} onChange={onChange} />;
     case 'multi-select':
       return <MultiSelectConfig field={field} onChange={onChange} />;
+    case 'file-upload':
+      return <FileUploadConfig field={field} onChange={onChange} />;
+    case 'section-header':
+      return <SectionHeaderConfig field={field} onChange={onChange} />;
     default:
       return <p className="text-xs text-gray-400">Configuration coming soon</p>;
   }

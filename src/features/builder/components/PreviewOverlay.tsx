@@ -4,6 +4,8 @@ import NumberRenderer from '@/features/fill/renderers/NumberRenderer';
 import DateRenderer from '@/features/fill/renderers/DateRenderer';
 import SingleSelectRenderer from '@/features/fill/renderers/SingleSelectRenderer';
 import MultiSelectRenderer from '@/features/fill/renderers/MultiSelectRenderer';
+import FileUploadRenderer from '@/features/fill/renderers/FileUploadRenderer';
+import SectionHeaderRenderer from '@/features/fill/renderers/SectionHeaderRenderer';
 
 export default function PreviewOverlay({
   title,
@@ -83,6 +85,10 @@ function renderPreviewField(field: FormField) {
       return <SingleSelectRenderer field={field} onChange={() => {}} />;
     case 'multi-select':
       return <MultiSelectRenderer field={field} onChange={() => {}} />;
+    case 'file-upload':
+      return <FileUploadRenderer field={field} onChange={() => {}} />;
+    case 'section-header':
+      return <SectionHeaderRenderer field={field} />;
     default:
       return (
         <div className="rounded-lg border border-gray-200 px-4 py-3">
