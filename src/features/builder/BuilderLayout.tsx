@@ -172,7 +172,7 @@ export default function BuilderLayout() {
         <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
           <BuilderCanvas />
         </div>
-        <aside className="hidden w-80 shrink-0 overflow-y-auto border-l border-gray-200 bg-white md:block dark:border-gray-800 dark:bg-gray-950">
+        <aside className="hidden w-96 shrink-0 overflow-y-auto border-l border-gray-200 bg-white md:block dark:border-gray-800 dark:bg-gray-950">
           <ConfigPanel />
         </aside>
       </div>
