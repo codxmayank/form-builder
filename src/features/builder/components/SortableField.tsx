@@ -13,13 +13,13 @@ interface Props {
 
 export function SortableField({ field, isSelected, onSelect, onRemove, onDuplicate }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: field.id,
+    id: field.id
   });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1,
+    opacity: isDragging ? 0.5 : 1
   };
 
   return (
