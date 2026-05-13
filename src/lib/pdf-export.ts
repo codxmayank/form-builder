@@ -197,6 +197,8 @@ function formatValue(field: FormField, value: FieldValue): string {
     case 'single-line-text':
     case 'multi-line-text':
     case 'date':
+      return escapeHtml(String(value));
+
     case 'single-select': {
       const opts = (field as SingleSelectField).options;
       const match = opts.find((o) => o.id === value);
