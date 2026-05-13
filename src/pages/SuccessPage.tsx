@@ -28,12 +28,6 @@ export default function SuccessPage() {
           Submit Another
         </Link>
         <Link
-          to={`/instances/${templateId}`}
-          className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-        >
-          View Submissions
-        </Link>
-        <Link
           to="/"
           className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
         >

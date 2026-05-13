@@ -54,10 +54,10 @@ export function exportAllSubmissionsPdf(template: FormTemplate, instances: FormI
         .filter(Boolean)
         .join('');
 
-      return `<div class="submission${idx < instances.length - 1 ? ' page-break' : ''}">
+      return `<div class="submission">
         <h2 class="sub-heading">Submission #${idx + 1} &mdash; ${escapeHtml(new Date(instance.submittedAt).toLocaleString())}</h2>
         ${rows}
-      </div>`;
+      </div>${idx < instances.length - 1 ? '<hr class="divider" />' : ''}`;
     })
     .join('');
 
@@ -82,7 +82,7 @@ export function exportAllSubmissionsPdf(template: FormTemplate, instances: FormI
     .section.lg { font-size: 20px; }
     .section.xl { font-size: 24px; }
     .submission { margin-bottom: 32px; }
-    .page-break { page-break-after: always; }
+    .divider { border: none; border-top: 2px solid #ddd; margin: 28px 0; }
     .timestamp { font-size: 11px; color: #888; margin-top: 32px; border-top: 1px solid #ddd; padding-top: 8px; }
     @media print { body { padding: 20px; } }
   </style>
