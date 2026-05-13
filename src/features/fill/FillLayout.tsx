@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { useFillStore } from '@/stores/fill-store';
 import { resolveFieldState } from '@/lib/conditions';
 import { calculate } from '@/lib/calculations';
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router';
 import type { FormField, CalculationField } from '@/types/fields';
 import type { FieldValue } from '@/types/template';
 import { exportPdf } from '@/lib/pdf-export';
+import Toast from '@/components/Toast';
 import TextRenderer from '@/features/fill/renderers/TextRenderer';
 import NumberRenderer from '@/features/fill/renderers/NumberRenderer';
 import DateRenderer from '@/features/fill/renderers/DateRenderer';
@@ -23,29 +25,34 @@ export default function FillLayout() {
   const setValue = useFillStore((s) => s.setValue);
   const setErrors = useFillStore((s) => s.setErrors);
   const navigate = useNavigate();
+  const [toast, setToast] = useState<string | null>(null);
+
+  const hideToast = useCallback(() => setToast(null), []);
 
   if (!template) return null;
 
-  function submit() {
-    if (!template) return;
-
-    // Validate all visible fields
+  function validateAll(): Record<string, string> {
+    if (!template) return {};
     const newErrors: Record<string, string> = {};
     for (const field of template.fields) {
       if (field.type === 'section-header' || field.type === 'calculation') continue;
-
       const { visible, required } = resolveFieldState(field, values);
       if (!visible) continue;
-
-      // Override field required with condition-resolved required
       const fieldWithRequired = { ...field, required } as FormField;
       const error = validateField(fieldWithRequired, values[field.id] ?? null);
       if (error) newErrors[field.id] = error;
     }
+    return newErrors;
+  }
+
+  function submit() {
+    if (!template) return;
+
+    const newErrors = validateAll();
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      // Scroll to first error
+      setToast('Please resolve all errors before submitting');
       const firstErrorId = Object.keys(newErrors)[0];
       document
         .getElementById(`field-${firstErrorId}`)
@@ -105,7 +112,19 @@ export default function FillLayout() {
         <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:justify-end">
           <button
             type="button"
-            onClick={() => exportPdf(template, values)}
+            onClick={() => {
+              const errs = validateAll();
+              if (Object.keys(errs).length > 0) {
+                setErrors(errs);
+                setToast('Please resolve all errors before exporting');
+                const firstErrorId = Object.keys(errs)[0];
+                document
+                  .getElementById(`field-${firstErrorId}`)
+                  ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+              }
+              exportPdf(template, values);
+            }}
             className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Export PDF
@@ -118,6 +137,8 @@ export default function FillLayout() {
           </button>
         </div>
       </form>
+
+      {toast && <Toast message={toast} onClose={hideToast} />}
     </div>
   );
 }
