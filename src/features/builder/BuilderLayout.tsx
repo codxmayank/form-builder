@@ -51,7 +51,7 @@ export default function BuilderLayout() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Untitled Form"
-            className="min-w-0 flex-1 border-none bg-transparent text-base font-semibold text-gray-900 placeholder-gray-400 focus:outline-none sm:text-lg dark:text-white dark:placeholder-gray-500"
+            className="max-w-md min-w-0 flex-1 border-none bg-transparent text-base font-semibold text-gray-900 placeholder-gray-400 focus:outline-none sm:text-lg dark:text-white dark:placeholder-gray-500"
             aria-label="Form title"
           />
           {/* Desktop actions — hidden on mobile */}
