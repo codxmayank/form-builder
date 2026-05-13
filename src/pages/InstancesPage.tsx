@@ -73,13 +73,13 @@ export default function InstancesPage() {
           )}
           <Link
             to={`/fill/${templateId}`}
-            className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white hover:bg-gray-800 sm:px-4 sm:py-2 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-gray-700 hover:bg-gray-50 sm:px-4 sm:py-2 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Fill again
           </Link>
           <Link
             to={`/builder/${templateId}`}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-gray-700 hover:bg-gray-50 sm:px-4 sm:py-2 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white hover:bg-gray-800 sm:px-4 sm:py-2 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
           >
             Edit template
           </Link>
