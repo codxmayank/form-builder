@@ -48,22 +48,22 @@ export default function InstancesPage() {
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
+        <div className="min-w-0">
           <h1 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
             Submissions
           </h1>
-          <p className="mt-1 text-sm text-gray-500">{template?.title || 'Loading...'}</p>
+          <p className="mt-1 truncate text-sm text-gray-500">{template?.title || 'Loading...'}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex shrink-0 gap-2">
           <Link
             to={`/fill/${templateId}`}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+            className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white hover:bg-gray-800 sm:px-4 sm:py-2 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
           >
             Fill again
           </Link>
           <Link
             to={`/builder/${templateId}`}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-gray-700 hover:bg-gray-50 sm:px-4 sm:py-2 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Edit template
           </Link>

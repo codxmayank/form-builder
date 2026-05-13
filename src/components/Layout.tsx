@@ -14,15 +14,15 @@ export default function Layout() {
         className="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950"
         role="banner"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-          <Link to="/" className="text-xl font-bold text-gray-900 dark:text-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3">
+          <Link to="/" className="shrink-0 text-xl font-bold text-gray-900 dark:text-white">
             FormCraft
           </Link>
-          <nav className="flex items-center gap-3" aria-label="Main navigation">
+          <nav className="flex items-center gap-2 sm:gap-3" aria-label="Main navigation">
             <ThemeToggle />
             <Link
               to="/builder/new"
-              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+              className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white hover:bg-gray-800 sm:px-4 sm:py-2 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
             >
               New Template
             </Link>

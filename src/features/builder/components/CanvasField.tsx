@@ -46,10 +46,10 @@ export const CanvasField = memo(function CanvasField({
       }`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex min-w-0 items-center gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-2">
           <button
             type="button"
-            className="cursor-grab touch-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="shrink-0 cursor-grab touch-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             aria-label="Drag to reorder"
             {...dragHandleProps}
           >
@@ -57,7 +57,7 @@ export const CanvasField = memo(function CanvasField({
               <path d="M7 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
             </svg>
           </button>
-          <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+          <span className="hidden shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 sm:inline dark:bg-gray-800 dark:text-gray-400">
             {typeLabel[field.type]}
           </span>
           <span className="truncate text-sm text-gray-900 dark:text-gray-100">

@@ -61,7 +61,7 @@ export default function TemplatesList() {
               }}
               className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
             >
-              <h3 className="font-medium text-gray-900 dark:text-white">
+              <h3 className="truncate font-medium text-gray-900 dark:text-white">
                 {t.title || 'Untitled Form'}
               </h3>
               <div className="mt-2 flex gap-3 text-sm text-gray-500 dark:text-gray-400">
@@ -71,7 +71,7 @@ export default function TemplatesList() {
               <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                 Updated {timeAgo(t.updatedAt)}
               </p>
-              <div className="mt-3 flex gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 <Link
                   to={`/fill/${t.id}`}
                   onClick={(e) => e.stopPropagation()}

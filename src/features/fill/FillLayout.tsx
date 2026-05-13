@@ -102,7 +102,7 @@ export default function FillLayout() {
           );
         })}
 
-        <div className="flex justify-end gap-3 pt-4">
+        <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={() => exportPdf(template, values)}
