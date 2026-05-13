@@ -1,1 +1,15 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Dark mode defaults for form controls in config panels */
+.dark input[type='text'],
+.dark input[type='number'],
+.dark input[type='date'],
+.dark input[type='file'],
+.dark textarea,
+.dark select {
+  background-color: var(--color-gray-900);
+  border-color: var(--color-gray-600);
+  color: var(--color-gray-100);
+}

@@ -23,7 +23,7 @@ export default function MultiSelectRenderer({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-900">
+      <label className="block text-sm font-medium text-gray-900 dark:text-gray-100">
         {field.label || 'Untitled'}
         {field.required && <span className="ml-1 text-red-500">*</span>}
       </label>

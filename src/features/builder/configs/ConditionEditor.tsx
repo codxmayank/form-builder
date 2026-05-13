@@ -64,7 +64,7 @@ export default function ConditionEditor({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-700">Conditions</h3>
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Conditions</h3>
         <button
           type="button"
           onClick={addCondition}
@@ -88,7 +88,7 @@ export default function ConditionEditor({
         return (
           <div
             key={condition.id}
-            className="space-y-2 rounded-lg border border-gray-200 bg-gray-50 p-3"
+            className="space-y-2 rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-900"
           >
             {/* Effect */}
             <select

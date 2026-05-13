@@ -13,15 +13,15 @@ export default function NumberRenderer({
 }) {
   const step = field.decimalPlaces > 0 ? 1 / Math.pow(10, field.decimalPlaces) : 1;
 
-  const inputClasses = `w-full rounded-lg border px-3 py-2 text-sm focus:ring-1 focus:outline-none ${
+  const inputClasses = `w-full rounded-lg border px-3 py-2 text-sm focus:ring-1 focus:outline-none dark:bg-gray-900 dark:text-white ${
     error
       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600'
   }`;
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-900">
+      <label className="block text-sm font-medium text-gray-900 dark:text-gray-100">
         {field.label || 'Untitled'}
         {field.required && <span className="ml-1 text-red-500">*</span>}
       </label>

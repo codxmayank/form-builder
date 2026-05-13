@@ -18,7 +18,7 @@ export default function FieldPalette() {
 
   return (
     <div className="p-3">
-      <h2 className="mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+      <h2 className="mb-2 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
         Field Types
       </h2>
       <div className="space-y-1">
@@ -27,9 +27,9 @@ export default function FieldPalette() {
             key={type}
             type="button"
             onClick={() => addField(type)}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-gray-100 text-sm font-medium text-gray-600">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-gray-100 text-sm font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
               {icon}
             </span>
             {label}

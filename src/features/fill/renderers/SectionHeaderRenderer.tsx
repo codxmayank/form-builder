@@ -11,7 +11,7 @@ const sizeClasses = {
 export default function SectionHeaderRenderer({ field }: { field: SectionHeaderField }) {
   return (
     <div className="py-1">
-      <h3 className={`font-semibold text-gray-900 ${sizeClasses[field.size]}`}>
+      <h3 className={`font-semibold text-gray-900 dark:text-white ${sizeClasses[field.size]}`}>
         {field.label || 'Untitled Section'}
       </h3>
     </div>

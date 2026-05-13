@@ -13,7 +13,7 @@ export default function SingleSelectRenderer({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-900">
+      <label className="block text-sm font-medium text-gray-900 dark:text-gray-100">
         {field.label || 'Untitled'}
         {field.required && <span className="ml-1 text-red-500">*</span>}
       </label>
@@ -23,10 +23,10 @@ export default function SingleSelectRenderer({
           <select
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className={`w-full rounded-lg border px-3 py-2 text-sm focus:ring-1 focus:outline-none ${
+            className={`w-full rounded-lg border px-3 py-2 text-sm focus:ring-1 focus:outline-none dark:bg-gray-900 dark:text-white ${
               error
                 ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+                : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600'
             }`}
             aria-invalid={!!error}
             aria-describedby={error ? `err-${field.id}` : undefined}
@@ -67,8 +67,8 @@ export default function SingleSelectRenderer({
                 onClick={() => onChange(value === opt.id ? '' : opt.id)}
                 className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                   value === opt.id
-                    ? 'border-blue-500 bg-blue-50 text-blue-700'
-                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    ? 'border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800'
                 }`}
               >
                 {opt.label || 'Untitled'}

@@ -73,7 +73,9 @@ export default function FillLayout() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900">{template.title || 'Untitled Form'}</h1>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+        {template.title || 'Untitled Form'}
+      </h1>
 
       <form
         className="mt-6 space-y-5"
@@ -104,13 +106,13 @@ export default function FillLayout() {
           <button
             type="button"
             onClick={() => exportPdf(template, values)}
-            className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 focus:outline-none"
+            className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Export PDF
           </button>
           <button
             type="submit"
-            className="rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-medium text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none"
+            className="rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-medium text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
           >
             Submit
           </button>

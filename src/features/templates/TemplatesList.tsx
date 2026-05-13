@@ -27,13 +27,13 @@ export default function TemplatesList() {
   if (templates.length === 0) {
     return (
       <div className="py-16 text-center">
-        <h2 className="text-lg font-medium text-gray-900">No templates yet</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white">No templates yet</h2>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           Create your first form template to get started.
         </p>
         <Link
           to="/builder/new"
-          className="mt-4 inline-block rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+          className="mt-4 inline-block rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
         >
           New Template
         </Link>
@@ -50,19 +50,23 @@ export default function TemplatesList() {
             <Link
               key={t.id}
               to={`/builder/${t.id}`}
-              className="rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
+              className="rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
             >
-              <h3 className="font-medium text-gray-900">{t.title || 'Untitled Form'}</h3>
-              <div className="mt-2 flex gap-3 text-sm text-gray-500">
+              <h3 className="font-medium text-gray-900 dark:text-white">
+                {t.title || 'Untitled Form'}
+              </h3>
+              <div className="mt-2 flex gap-3 text-sm text-gray-500 dark:text-gray-400">
                 <span>{t.fields.length} fields</span>
                 <span>{responses} responses</span>
               </div>
-              <p className="mt-1 text-xs text-gray-400">Updated {timeAgo(t.updatedAt)}</p>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+                Updated {timeAgo(t.updatedAt)}
+              </p>
               <div className="mt-3 flex gap-2">
                 <Link
                   to={`/fill/${t.id}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200"
+                  className="rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                 >
                   New Response
                 </Link>
@@ -73,7 +77,7 @@ export default function TemplatesList() {
                     e.stopPropagation();
                     setDeletingId(t.id);
                   }}
-                  className="rounded bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-100"
+                  className="rounded bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-100 dark:bg-red-950 dark:text-red-400 dark:hover:bg-red-900"
                 >
                   Delete
                 </button>

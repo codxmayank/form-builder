@@ -40,14 +40,16 @@ export const CanvasField = memo(function CanvasField({
         }
       }}
       className={`group cursor-pointer rounded-lg border-2 p-3 transition-colors sm:p-4 ${
-        isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'
+        isSelected
+          ? 'border-blue-500 bg-blue-50 dark:bg-blue-950'
+          : 'border-gray-200 bg-white hover:border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-gray-600'
       }`}
     >
       <div className="flex items-center justify-between">
         <div className="flex min-w-0 items-center gap-2">
           <button
             type="button"
-            className="cursor-grab touch-none text-gray-400 hover:text-gray-600"
+            className="cursor-grab touch-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             aria-label="Drag to reorder"
             {...dragHandleProps}
           >
@@ -55,10 +57,12 @@ export const CanvasField = memo(function CanvasField({
               <path d="M7 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
             </svg>
           </button>
-          <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+          <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
             {typeLabel[field.type]}
           </span>
-          <span className="truncate text-sm text-gray-900">{field.label || 'Untitled field'}</span>
+          <span className="truncate text-sm text-gray-900 dark:text-gray-100">
+            {field.label || 'Untitled field'}
+          </span>
         </div>
         <div
           className={`flex shrink-0 gap-1 transition-opacity ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
@@ -69,7 +73,7 @@ export const CanvasField = memo(function CanvasField({
               e.stopPropagation();
               onDuplicate();
             }}
-            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
             aria-label="Duplicate field"
           >
             <svg
@@ -92,7 +96,7 @@ export const CanvasField = memo(function CanvasField({
               e.stopPropagation();
               onRemove();
             }}
-            className="rounded p-1 text-gray-400 hover:bg-red-50 hover:text-red-500"
+            className="rounded p-1 text-gray-400 hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-950 dark:hover:text-red-400"
             aria-label="Remove field"
           >
             <svg

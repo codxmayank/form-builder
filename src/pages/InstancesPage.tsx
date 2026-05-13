@@ -49,19 +49,21 @@ export default function InstancesPage() {
     <main className="mx-auto max-w-4xl px-4 py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Submissions</h1>
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
+            Submissions
+          </h1>
           <p className="mt-1 text-sm text-gray-500">{template?.title || 'Loading...'}</p>
         </div>
         <div className="flex gap-2">
           <Link
             to={`/fill/${templateId}`}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
           >
             Fill again
           </Link>
           <Link
             to={`/builder/${templateId}`}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Edit template
           </Link>
@@ -79,9 +81,9 @@ export default function InstancesPage() {
           </Link>
         </div>
       ) : (
-        <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200">
+        <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
           <table className="w-full min-w-[500px] text-left text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
                 <th className="px-4 py-3 font-medium text-gray-600">#</th>
                 <th className="px-4 py-3 font-medium text-gray-600">Submitted</th>
@@ -96,7 +98,7 @@ export default function InstancesPage() {
                 ).length;
 
                 return (
-                  <tr key={instance.id} className="hover:bg-gray-50">
+                  <tr key={instance.id} className="hover:bg-gray-50 dark:hover:bg-gray-900">
                     <td className="px-4 py-3 text-gray-500">{idx + 1}</td>
                     <td className="px-4 py-3 text-gray-700">{formatDate(instance.submittedAt)}</td>
                     <td className="px-4 py-3 text-gray-500">{filledCount}</td>

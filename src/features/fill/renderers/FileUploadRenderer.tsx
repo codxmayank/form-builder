@@ -40,7 +40,7 @@ export default function FileUploadRenderer({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-900">
+      <label className="block text-sm font-medium text-gray-900 dark:text-gray-100">
         {field.label || 'Untitled'}
         {field.required && <span className="ml-1 text-red-500">*</span>}
       </label>
@@ -63,7 +63,7 @@ export default function FileUploadRenderer({
           {value.map((file, i) => (
             <li
               key={i}
-              className="flex items-center justify-between rounded bg-gray-50 px-3 py-1.5 text-sm"
+              className="flex items-center justify-between rounded bg-gray-50 px-3 py-1.5 text-sm dark:bg-gray-900"
             >
               <span className="truncate text-gray-700">{file.name}</span>
               <div className="flex items-center gap-2">

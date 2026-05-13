@@ -30,15 +30,15 @@ export default function ConfirmDialog({
     <dialog
       ref={ref}
       onClose={onCancel}
-      className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/40"
+      className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/40 dark:bg-gray-900 dark:text-gray-100"
     >
-      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-      <p className="mt-2 text-sm text-gray-600">{message}</p>
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{message}</p>
       <div className="mt-6 flex justify-end gap-3">
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
         >
           Cancel
         </button>

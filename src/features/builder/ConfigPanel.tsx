@@ -33,7 +33,7 @@ export default function ConfigPanel() {
   if (!field) {
     return (
       <div className="flex h-full items-center justify-center p-6">
-        <p className="text-sm text-gray-400">Select a field to configure</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">Select a field to configure</p>
       </div>
     );
   }
@@ -44,13 +44,16 @@ export default function ConfigPanel() {
 
   return (
     <div className="p-4">
-      <h2 className="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
+      <h2 className="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
         {TYPE_LABELS[field.type]}
       </h2>
 
       <div className="space-y-4">
         <div>
-          <label htmlFor="field-label" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="field-label"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Label
           </label>
           <input
@@ -59,18 +62,18 @@ export default function ConfigPanel() {
             value={field.label}
             onChange={(e) => update({ label: e.target.value })}
             placeholder="Enter field label"
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
           />
         </div>
 
-        <hr className="border-gray-200" />
+        <hr className="border-gray-200 dark:border-gray-700" />
 
         {renderConfig(field, allFields, update)}
 
         {/* Conditions — available on all field types except section-header */}
         {field.type !== 'section-header' && (
           <>
-            <hr className="border-gray-200" />
+            <hr className="border-gray-200 dark:border-gray-700" />
             <ConditionEditor
               conditions={field.conditions}
               allFields={allFields}

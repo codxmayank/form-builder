@@ -25,16 +25,18 @@ export default function PreviewOverlay({
       }}
     >
       <div
-        className="w-full max-w-2xl rounded-xl bg-white p-4 shadow-2xl sm:p-8"
+        className="w-full max-w-2xl rounded-xl bg-white p-4 shadow-2xl sm:p-8 dark:bg-gray-900"
         role="dialog"
         aria-modal="true"
       >
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-900">{title || 'Untitled Form'}</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            {title || 'Untitled Form'}
+          </h2>
           <button
             type="button"
             onClick={onClose}
-            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+            className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
             aria-label="Close preview"
           >
             <svg
@@ -63,7 +65,7 @@ export default function PreviewOverlay({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
           >
             Close
           </button>

@@ -40,8 +40,8 @@ export default function BuilderCanvas() {
     return (
       <div className="flex flex-1 items-center justify-center p-8 text-center">
         <div>
-          <p className="text-lg font-medium text-gray-400">No fields yet</p>
-          <p className="mt-1 text-sm text-gray-400">
+          <p className="text-lg font-medium text-gray-400 dark:text-gray-500">No fields yet</p>
+          <p className="mt-1 text-sm text-gray-400 dark:text-gray-500">
             Click a field type from the palette to get started
           </p>
         </div>
