@@ -1,6 +1,8 @@
 import { useBuilderStore } from '@/stores/builder-store';
 import type { FormField } from '@/types/fields';
 import TextConfig from './configs/TextConfig';
+import NumberConfig from './configs/NumberConfig';
+import DateConfig from './configs/DateConfig';
 
 const TYPE_LABELS: Record<FormField['type'], string> = {
   'single-line-text': 'Short Text',
@@ -67,6 +69,10 @@ function renderConfig(field: FormField, onChange: (updates: Partial<FormField>) 
     case 'single-line-text':
     case 'multi-line-text':
       return <TextConfig field={field} onChange={onChange} />;
+    case 'number':
+      return <NumberConfig field={field} onChange={onChange} />;
+    case 'date':
+      return <DateConfig field={field} onChange={onChange} />;
     default:
       return <p className="text-xs text-gray-400">Configuration coming soon</p>;
   }

@@ -1,5 +1,7 @@
 import type { FormField } from '@/types/fields';
 import TextRenderer from '@/features/fill/renderers/TextRenderer';
+import NumberRenderer from '@/features/fill/renderers/NumberRenderer';
+import DateRenderer from '@/features/fill/renderers/DateRenderer';
 
 export default function PreviewOverlay({
   title,
@@ -71,6 +73,10 @@ function renderPreviewField(field: FormField) {
     case 'single-line-text':
     case 'multi-line-text':
       return <TextRenderer field={field} onChange={() => {}} />;
+    case 'number':
+      return <NumberRenderer field={field} onChange={() => {}} />;
+    case 'date':
+      return <DateRenderer field={field} onChange={() => {}} />;
     default:
       return (
         <div className="rounded-lg border border-gray-200 px-4 py-3">
