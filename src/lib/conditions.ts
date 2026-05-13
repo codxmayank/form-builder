@@ -72,7 +72,15 @@ export function resolveFieldState(
   field: FormField,
   values: Record<string, FieldValue>
 ): { visible: boolean; required: boolean } {
-  let visible = field.defaultVisibility === 'visible';
+  // If any condition uses "show", the field should be hidden by default
+  // (only shown when the condition is met). Vice versa for "hide".
+  const hasShowCondition = field.conditions.some((c) => c.effect === 'show');
+  const hasHideCondition = field.conditions.some((c) => c.effect === 'hide');
+  let visible = hasShowCondition
+    ? false
+    : hasHideCondition
+      ? true
+      : field.defaultVisibility === 'visible';
   let required =
     'required' in field ? (field as { required: boolean }).required : field.defaultRequired;
 
