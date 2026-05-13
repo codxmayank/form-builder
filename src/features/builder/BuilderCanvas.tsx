@@ -1,4 +1,3 @@
-import { useCallback, useMemo } from 'react';
 import {
   DndContext,
   closestCenter,
@@ -14,7 +13,7 @@ import {
   verticalListSortingStrategy
 } from '@dnd-kit/sortable';
 import { useBuilderStore } from '@/stores/builder-store';
-import { SortableField } from './components/SortableField';
+import { SortableItem } from './components/SortableItem';
 
 export default function BuilderCanvas() {
   const fields = useBuilderStore((s) => s.template?.fields ?? []);
@@ -29,25 +28,18 @@ export default function BuilderCanvas() {
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  const fieldIds = useMemo(() => fields.map((f) => f.id), [fields]);
-
-  const handleDragEnd = useCallback(
-    (event: DragEndEvent) => {
-      const { active, over } = event;
-      if (!over || active.id === over.id) return;
-      const fromIndex = fields.findIndex((f) => f.id === active.id);
-      const toIndex = fields.findIndex((f) => f.id === over.id);
-      if (fromIndex !== -1 && toIndex !== -1) {
-        reorderFields(fromIndex, toIndex);
-      }
-    },
-    [fields, reorderFields]
-  );
+  function onDragEnd(e: DragEndEvent) {
+    const { active, over } = e;
+    if (!over || active.id === over.id) return;
+    const from = fields.findIndex((f) => f.id === active.id);
+    const to = fields.findIndex((f) => f.id === over.id);
+    if (from !== -1 && to !== -1) reorderFields(from, to);
+  }
 
   if (fields.length === 0) {
     return (
-      <div className="flex flex-1 items-center justify-center p-8">
-        <div className="text-center">
+      <div className="flex flex-1 items-center justify-center p-8 text-center">
+        <div>
           <p className="text-lg font-medium text-gray-400">No fields yet</p>
           <p className="mt-1 text-sm text-gray-400">
             Click a field type from the palette to get started
@@ -58,11 +50,11 @@ export default function BuilderCanvas() {
   }
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={fieldIds} strategy={verticalListSortingStrategy}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+      <SortableContext items={fields.map((f) => f.id)} strategy={verticalListSortingStrategy}>
         <div className="space-y-2 p-4">
           {fields.map((field) => (
-            <SortableField
+            <SortableItem
               key={field.id}
               field={field}
               isSelected={field.id === selectedFieldId}

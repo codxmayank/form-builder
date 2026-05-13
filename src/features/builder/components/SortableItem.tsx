@@ -3,27 +3,32 @@ import { CSS } from '@dnd-kit/utilities';
 import type { FormField } from '@/types/fields';
 import { CanvasField } from './CanvasField';
 
-interface Props {
+export function SortableItem({
+  field,
+  isSelected,
+  onSelect,
+  onRemove,
+  onDuplicate
+}: {
   field: FormField;
   isSelected: boolean;
   onSelect: () => void;
   onRemove: () => void;
   onDuplicate: () => void;
-}
-
-export function SortableField({ field, isSelected, onSelect, onRemove, onDuplicate }: Props) {
+}) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: field.id
   });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1
-  };
-
   return (
-    <div ref={setNodeRef} style={style}>
+    <div
+      ref={setNodeRef}
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1
+      }}
+    >
       <CanvasField
         field={field}
         isSelected={isSelected}

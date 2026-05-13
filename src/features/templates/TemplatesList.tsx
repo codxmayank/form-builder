@@ -1,22 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { useTemplateStore } from '@/stores/template-store';
 import { getInstancesByTemplate } from '@/lib/storage';
+import ConfirmDialog from '@/components/ConfirmDialog';
 
-function formatRelativeTime(dateStr: string): string {
+function timeAgo(dateStr: string) {
   const diff = Date.now() - new Date(dateStr).getTime();
-  const minutes = Math.floor(diff / 60000);
-  if (minutes < 1) return 'just now';
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.floor(hours / 24);
-  return `${days}d ago`;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs / 24)}d ago`;
 }
 
 export default function TemplatesList() {
   const templates = useTemplateStore((s) => s.templates);
   const loadTemplates = useTemplateStore((s) => s.loadTemplates);
+  const deleteTemplate = useTemplateStore((s) => s.deleteTemplate);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     loadTemplates();
@@ -40,34 +42,59 @@ export default function TemplatesList() {
   }
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {templates.map((template) => {
-        const instanceCount = getInstancesByTemplate(template.id).length;
-
-        return (
-          <Link
-            key={template.id}
-            to={`/builder/${template.id}`}
-            className="rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
-          >
-            <h3 className="font-medium text-gray-900">{template.title || 'Untitled Form'}</h3>
-            <div className="mt-2 flex gap-3 text-sm text-gray-500">
-              <span>{template.fields.length} fields</span>
-              <span>{instanceCount} responses</span>
-            </div>
-            <p className="mt-1 text-xs text-gray-400">
-              Updated {formatRelativeTime(template.updatedAt)}
-            </p>
+    <>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {templates.map((t) => {
+          const responses = getInstancesByTemplate(t.id).length;
+          return (
             <Link
-              to={`/fill/${template.id}`}
-              onClick={(e) => e.stopPropagation()}
-              className="mt-3 inline-block rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200"
+              key={t.id}
+              to={`/builder/${t.id}`}
+              className="rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
             >
-              New Response
+              <h3 className="font-medium text-gray-900">{t.title || 'Untitled Form'}</h3>
+              <div className="mt-2 flex gap-3 text-sm text-gray-500">
+                <span>{t.fields.length} fields</span>
+                <span>{responses} responses</span>
+              </div>
+              <p className="mt-1 text-xs text-gray-400">Updated {timeAgo(t.updatedAt)}</p>
+              <div className="mt-3 flex gap-2">
+                <Link
+                  to={`/fill/${t.id}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200"
+                >
+                  New Response
+                </Link>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setDeletingId(t.id);
+                  }}
+                  className="rounded bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-100"
+                >
+                  Delete
+                </button>
+              </div>
             </Link>
-          </Link>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+
+      <ConfirmDialog
+        open={deletingId !== null}
+        title="Delete template"
+        message="This will permanently delete this template and all its responses."
+        confirmLabel="Delete"
+        variant="danger"
+        onConfirm={() => {
+          if (deletingId) deleteTemplate(deletingId);
+          setDeletingId(null);
+        }}
+        onCancel={() => setDeletingId(null)}
+      />
+    </>
   );
 }

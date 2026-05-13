@@ -1,7 +1,7 @@
 import { memo, type HTMLAttributes } from 'react';
 import type { FormField } from '@/types/fields';
 
-const TYPE_LABELS: Record<FormField['type'], string> = {
+const typeLabel: Record<FormField['type'], string> = {
   'single-line-text': 'Short Text',
   'multi-line-text': 'Long Text',
   number: 'Number',
@@ -13,15 +13,6 @@ const TYPE_LABELS: Record<FormField['type'], string> = {
   calculation: 'Calculation'
 };
 
-interface Props {
-  field: FormField;
-  isSelected: boolean;
-  onSelect: () => void;
-  onRemove: () => void;
-  onDuplicate: () => void;
-  dragHandleProps?: HTMLAttributes<HTMLButtonElement>;
-}
-
 export const CanvasField = memo(function CanvasField({
   field,
   isSelected,
@@ -29,7 +20,14 @@ export const CanvasField = memo(function CanvasField({
   onRemove,
   onDuplicate,
   dragHandleProps
-}: Props) {
+}: {
+  field: FormField;
+  isSelected: boolean;
+  onSelect: () => void;
+  onRemove: () => void;
+  onDuplicate: () => void;
+  dragHandleProps?: HTMLAttributes<HTMLButtonElement>;
+}) {
   return (
     <div
       role="button"
@@ -41,7 +39,7 @@ export const CanvasField = memo(function CanvasField({
           onSelect();
         }
       }}
-      className={`group relative cursor-pointer rounded-lg border-2 p-4 transition-colors ${
+      className={`group cursor-pointer rounded-lg border-2 p-4 transition-colors ${
         isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'
       }`}
     >
@@ -58,11 +56,11 @@ export const CanvasField = memo(function CanvasField({
             </svg>
           </button>
           <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
-            {TYPE_LABELS[field.type]}
+            {typeLabel[field.type]}
           </span>
           <span className="truncate text-sm text-gray-900">{field.label || 'Untitled field'}</span>
         </div>
-        <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="flex shrink-0 gap-1 opacity-0 transition-opacity group-hover:opacity-100">
           <button
             type="button"
             onClick={(e) => {

@@ -1,22 +1,10 @@
 import { useBuilderStore } from '@/stores/builder-store';
-import type { FormField } from '@/types/fields';
-
-const TYPE_LABELS: Record<FormField['type'], string> = {
-  'single-line-text': 'Short Text',
-  'multi-line-text': 'Long Text',
-  number: 'Number',
-  date: 'Date',
-  'single-select': 'Single Select',
-  'multi-select': 'Multi Select',
-  'file-upload': 'File Upload',
-  'section-header': 'Section Header',
-  calculation: 'Calculation'
-};
 
 export default function ConfigPanel() {
-  const field = useBuilderStore((s) =>
-    s.selectedFieldId ? (s.template?.fields.find((f) => f.id === s.selectedFieldId) ?? null) : null
-  );
+  const field = useBuilderStore((s) => {
+    if (!s.selectedFieldId) return null;
+    return s.template?.fields.find((f) => f.id === s.selectedFieldId) ?? null;
+  });
   const updateField = useBuilderStore((s) => s.updateField);
 
   if (!field) {
@@ -30,7 +18,7 @@ export default function ConfigPanel() {
   return (
     <div className="p-4">
       <h2 className="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase">
-        {TYPE_LABELS[field.type]}
+        Configure Field
       </h2>
       <div className="space-y-4">
         <div>
