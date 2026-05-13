@@ -103,6 +103,7 @@ export interface MultiSelectField extends BaseField {
 }
 
 export interface FileMetadata {
+  id: string;
   name: string;
   size: number;
   type: string;

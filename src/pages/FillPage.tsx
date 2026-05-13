@@ -1,5 +1,5 @@
 import { useParams, Navigate } from 'react-router';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useTemplateStore } from '@/stores/template-store';
 import { useFillStore } from '@/stores/fill-store';
 import { getInstancesByTemplate } from '@/lib/storage';
@@ -11,8 +11,8 @@ export default function FillPage() {
   const templates = useTemplateStore((s) => s.templates);
   const initForm = useFillStore((s) => s.initForm);
   const reset = useFillStore((s) => s.reset);
-  const [ready, setReady] = useState(false);
-  const readyRef = useRef(false);
+  const ready = useFillStore((s) => s.template !== null);
+  const initRef = useRef(false);
 
   useEffect(() => {
     loadTemplates();
@@ -27,7 +27,7 @@ export default function FillPage() {
   }, [loaded, templateId, templates]);
 
   useEffect(() => {
-    if (!loaded || notFound || readyRef.current) return;
+    if (!loaded || notFound || initRef.current) return;
     if (!templateId) return;
 
     const template = templates.find((t) => t.id === templateId);
@@ -42,12 +42,10 @@ export default function FillPage() {
     }
 
     initForm(template, initialValues);
-    readyRef.current = true;
-    setReady(true); // eslint-disable-line react-hooks/set-state-in-effect
+    initRef.current = true;
 
     return () => {
-      readyRef.current = false;
-      setReady(false);
+      initRef.current = false;
       reset();
     };
   }, [loaded, notFound, templates, templateId, instanceId, initForm, reset]);

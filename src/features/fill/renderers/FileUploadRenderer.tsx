@@ -22,6 +22,7 @@ export default function FileUploadRenderer({
     if (!fileList) return;
 
     const newFiles: FileMetadata[] = Array.from(fileList).map((f) => ({
+      id: crypto.randomUUID(),
       name: f.name,
       size: f.size,
       type: f.type
@@ -62,7 +63,7 @@ export default function FileUploadRenderer({
         <ul className="mt-2 space-y-1">
           {value.map((file, i) => (
             <li
-              key={i}
+              key={file.id}
               className="flex items-center justify-between rounded bg-gray-50 px-3 py-1.5 text-sm dark:bg-gray-900"
             >
               <span className="truncate text-gray-700">{file.name}</span>
