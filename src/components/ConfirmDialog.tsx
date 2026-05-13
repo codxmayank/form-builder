@@ -30,7 +30,7 @@ export default function ConfirmDialog({
     <dialog
       ref={ref}
       onClose={onCancel}
-      className="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/40 dark:bg-gray-900 dark:text-gray-100"
+      className="m-auto w-full max-w-sm rounded-xl bg-white p-6 shadow-xl backdrop:bg-black/40 dark:bg-gray-900 dark:text-gray-100"
     >
       <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
       <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{message}</p>
