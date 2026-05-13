@@ -79,6 +79,13 @@ export default function TemplatesList() {
                 >
                   New Response
                 </Link>
+                <Link
+                  to={`/instances/${t.id}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                >
+                  Responses{responses > 0 && ` (${responses})`}
+                </Link>
                 <button
                   type="button"
                   onClick={(e) => {

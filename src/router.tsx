@@ -6,6 +6,7 @@ const HomePage = lazy(() => import('@/pages/HomePage'));
 const BuilderPage = lazy(() => import('@/pages/BuilderPage'));
 const FillPage = lazy(() => import('@/pages/FillPage'));
 const InstancesPage = lazy(() => import('@/pages/InstancesPage'));
+const SuccessPage = lazy(() => import('@/pages/SuccessPage'));
 
 function LazyPage({ children }: { children: ReactNode }) {
   return (
@@ -70,6 +71,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyPage>
             <InstancesPage />
+          </LazyPage>
+        )
+      },
+      {
+        path: '/success/:templateId',
+        element: (
+          <LazyPage>
+            <SuccessPage />
           </LazyPage>
         )
       },

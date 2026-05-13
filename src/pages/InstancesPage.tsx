@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from 'react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { useTemplateStore } from '@/stores/template-store';
 import { getInstancesByTemplate, getInstances, saveInstances } from '@/lib/storage';
-import { exportPdf } from '@/lib/pdf-export';
+import { exportPdf, exportAllSubmissionsPdf } from '@/lib/pdf-export';
 import ConfirmDialog from '@/components/ConfirmDialog';
 import type { FormInstance, FormTemplate } from '@/types/template';
 
@@ -45,6 +45,11 @@ export default function InstancesPage() {
     exportPdf(template as FormTemplate, instance.values);
   }
 
+  function exportAllPdf() {
+    if (!template || instances.length === 0) return;
+    exportAllSubmissionsPdf(template as FormTemplate, instances);
+  }
+
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -52,9 +57,20 @@ export default function InstancesPage() {
           <h1 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
             Submissions
           </h1>
-          <p className="mt-1 truncate text-sm text-gray-500">{template?.title || 'Loading...'}</p>
+          <p className="mt-1 truncate text-sm text-gray-500">
+            {template?.title || 'Untitled Form'}
+          </p>
         </div>
-        <div className="flex shrink-0 gap-2">
+        <div className="flex shrink-0 flex-wrap gap-2">
+          {instances.length > 0 && (
+            <button
+              type="button"
+              onClick={exportAllPdf}
+              className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-gray-700 hover:bg-gray-50 sm:px-4 sm:py-2 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              Export All PDF
+            </button>
+          )}
           <Link
             to={`/fill/${templateId}`}
             className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white hover:bg-gray-800 sm:px-4 sm:py-2 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
