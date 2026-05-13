@@ -182,7 +182,7 @@ function ConditionValueInput({
       >
         <option value="">Select a value</option>
         {targetField.options.map((opt) => (
-          <option key={opt.id} value={opt.label}>
+          <option key={opt.id} value={opt.id}>
             {opt.label}
           </option>
         ))}
@@ -198,12 +198,12 @@ function ConditionValueInput({
           <label key={opt.id} className="flex items-center gap-2 text-xs">
             <input
               type="checkbox"
-              checked={selected.includes(opt.label)}
+              checked={selected.includes(opt.id)}
               onChange={(e) => {
                 if (e.target.checked) {
-                  onValueChange([...selected, opt.label]);
+                  onValueChange([...selected, opt.id]);
                 } else {
-                  onValueChange(selected.filter((s) => s !== opt.label));
+                  onValueChange(selected.filter((s) => s !== opt.id));
                 }
               }}
               className="rounded border-gray-300"
