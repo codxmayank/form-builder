@@ -31,7 +31,7 @@ export default function BuilderLayout() {
       addTemplate(updated);
     }
     markClean();
-    if (!exists) navigate(`/builder/${template.id}`, { replace: true });
+    navigate('/', { replace: true });
   }
 
   function confirmDelete() {
