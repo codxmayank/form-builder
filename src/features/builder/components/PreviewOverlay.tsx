@@ -1,11 +1,13 @@
-// TODO: replace with real fill-mode renderers once those are built
+import type { FormField } from '@/types/fields';
+import TextRenderer from '@/features/fill/renderers/TextRenderer';
+
 export default function PreviewOverlay({
   title,
   fields,
   onClose
 }: {
   title: string;
-  fields: { id: string; type: string; label: string }[];
+  fields: FormField[];
   onClose: () => void;
 }) {
   return (
@@ -43,12 +45,9 @@ export default function PreviewOverlay({
         {fields.length === 0 ? (
           <p className="text-sm text-gray-400">No fields to preview.</p>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {fields.map((f) => (
-              <div key={f.id} className="rounded-lg border border-gray-200 px-4 py-3">
-                <p className="text-sm font-medium text-gray-900">{f.label || 'Untitled field'}</p>
-                <p className="text-xs text-gray-400">{f.type}</p>
-              </div>
+              <div key={f.id}>{renderPreviewField(f)}</div>
             ))}
           </div>
         )}
@@ -65,4 +64,19 @@ export default function PreviewOverlay({
       </div>
     </div>
   );
+}
+
+function renderPreviewField(field: FormField) {
+  switch (field.type) {
+    case 'single-line-text':
+    case 'multi-line-text':
+      return <TextRenderer field={field} onChange={() => {}} />;
+    default:
+      return (
+        <div className="rounded-lg border border-gray-200 px-4 py-3">
+          <p className="text-sm font-medium text-gray-900">{field.label || 'Untitled field'}</p>
+          <p className="text-xs text-gray-400">{field.type}</p>
+        </div>
+      );
+  }
 }
