@@ -42,57 +42,93 @@ export default function BuilderLayout() {
 
   return (
     <div className="flex h-[calc(100dvh-57px)] flex-col">
-      <div className="flex items-center gap-2 border-b border-gray-200 bg-white px-3 py-2 sm:px-4 dark:border-gray-800 dark:bg-gray-950">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Untitled Form"
-          className="min-w-0 flex-1 border-none bg-transparent text-base font-semibold text-gray-900 placeholder-gray-400 focus:outline-none sm:text-lg dark:text-white dark:placeholder-gray-500"
-          aria-label="Form title"
-        />
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          {/* Mobile-only panel toggles */}
-          <button
-            type="button"
-            onClick={() => setMobilePanel(mobilePanel === 'palette' ? null : 'palette')}
-            className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:hidden dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-            aria-label="Toggle field palette"
-          >
-            + Fields
-          </button>
-          <button
-            type="button"
-            onClick={() => setMobilePanel(mobilePanel === 'config' ? null : 'config')}
-            className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:hidden dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-            aria-label="Toggle config panel"
-          >
-            Config
-          </button>
-          <button
-            type="button"
-            onClick={() => setConfirmingDelete(true)}
-            className="hidden rounded-lg border border-red-200 px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 sm:inline-flex sm:px-3 sm:text-sm dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950"
-          >
-            Delete
-          </button>
-          <button
-            type="button"
-            onClick={() => setPreviewing(true)}
-            className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:px-4 sm:text-sm dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-          >
-            Preview
-          </button>
-          <button
-            type="button"
-            onClick={save}
-            className="relative rounded-lg bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-gray-800 sm:px-4 sm:text-sm dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
-          >
-            Save
-            {isDirty && (
-              <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-blue-500" />
-            )}
-          </button>
+      {/* Toolbar — stacks on mobile, single row on sm+ */}
+      <div className="border-b border-gray-200 bg-white px-3 py-2 sm:px-4 dark:border-gray-800 dark:bg-gray-950">
+        {/* Row 1: title + desktop-only actions */}
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Untitled Form"
+            className="min-w-0 flex-1 border-none bg-transparent text-base font-semibold text-gray-900 placeholder-gray-400 focus:outline-none sm:text-lg dark:text-white dark:placeholder-gray-500"
+            aria-label="Form title"
+          />
+          {/* Desktop actions — hidden on mobile */}
+          <div className="hidden shrink-0 items-center gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => setConfirmingDelete(true)}
+              className="rounded-lg border border-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              onClick={() => setPreviewing(true)}
+              className="rounded-lg border border-gray-300 px-4 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              Preview
+            </button>
+            <button
+              type="button"
+              onClick={save}
+              className="relative rounded-lg bg-gray-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+            >
+              Save
+              {isDirty && (
+                <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-blue-500" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Row 2: mobile-only actions */}
+        <div className="mt-2 flex items-center justify-between sm:hidden">
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setMobilePanel(mobilePanel === 'palette' ? null : 'palette')}
+              className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+              aria-label="Toggle field palette"
+            >
+              + Fields
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobilePanel(mobilePanel === 'config' ? null : 'config')}
+              className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+              aria-label="Toggle config panel"
+            >
+              Config
+            </button>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setConfirmingDelete(true)}
+              className="rounded-lg border border-red-200 px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              onClick={() => setPreviewing(true)}
+              className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              Preview
+            </button>
+            <button
+              type="button"
+              onClick={save}
+              className="relative rounded-lg bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200"
+            >
+              Save
+              {isDirty && (
+                <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-blue-500" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -104,17 +140,6 @@ export default function BuilderLayout() {
           </div>
         </div>
       )}
-
-      {/* Mobile-only delete button */}
-      <div className="flex items-center justify-end border-b border-gray-200 bg-white px-3 py-1.5 sm:hidden dark:border-gray-800 dark:bg-gray-950">
-        <button
-          type="button"
-          onClick={() => setConfirmingDelete(true)}
-          className="rounded-lg border border-red-200 px-2.5 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950"
-        >
-          Delete Template
-        </button>
-      </div>
 
       <div className="flex flex-1 overflow-hidden">
         <aside className="hidden w-56 shrink-0 overflow-y-auto border-r border-gray-200 bg-white sm:block dark:border-gray-800 dark:bg-gray-950">
