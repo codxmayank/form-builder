@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type HTMLAttributes } from 'react';
 import type { FormField } from '@/types/fields';
 
 const TYPE_LABELS: Record<FormField['type'], string> = {
@@ -19,6 +19,7 @@ interface Props {
   onSelect: () => void;
   onRemove: () => void;
   onDuplicate: () => void;
+  dragHandleProps?: HTMLAttributes<HTMLButtonElement>;
 }
 
 export const CanvasField = memo(function CanvasField({
@@ -26,7 +27,8 @@ export const CanvasField = memo(function CanvasField({
   isSelected,
   onSelect,
   onRemove,
-  onDuplicate
+  onDuplicate,
+  dragHandleProps
 }: Props) {
   return (
     <div
@@ -45,6 +47,16 @@ export const CanvasField = memo(function CanvasField({
     >
       <div className="flex items-center justify-between">
         <div className="flex min-w-0 items-center gap-2">
+          <button
+            type="button"
+            className="cursor-grab touch-none text-gray-400 hover:text-gray-600"
+            aria-label="Drag to reorder"
+            {...dragHandleProps}
+          >
+            <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M7 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+            </svg>
+          </button>
           <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
             {TYPE_LABELS[field.type]}
           </span>

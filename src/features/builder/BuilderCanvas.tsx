@@ -1,5 +1,20 @@
+import { useCallback, useMemo } from 'react';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy
+} from '@dnd-kit/sortable';
 import { useBuilderStore } from '@/stores/builder-store';
-import { CanvasField } from './components/CanvasField';
+import { SortableField } from './components/SortableField';
 
 export default function BuilderCanvas() {
   const fields = useBuilderStore((s) => s.template?.fields ?? []);
@@ -7,6 +22,27 @@ export default function BuilderCanvas() {
   const selectField = useBuilderStore((s) => s.selectField);
   const removeField = useBuilderStore((s) => s.removeField);
   const duplicateField = useBuilderStore((s) => s.duplicateField);
+  const reorderFields = useBuilderStore((s) => s.reorderFields);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const fieldIds = useMemo(() => fields.map((f) => f.id), [fields]);
+
+  const handleDragEnd = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+      if (!over || active.id === over.id) return;
+      const fromIndex = fields.findIndex((f) => f.id === active.id);
+      const toIndex = fields.findIndex((f) => f.id === over.id);
+      if (fromIndex !== -1 && toIndex !== -1) {
+        reorderFields(fromIndex, toIndex);
+      }
+    },
+    [fields, reorderFields]
+  );
 
   if (fields.length === 0) {
     return (
@@ -22,17 +58,21 @@ export default function BuilderCanvas() {
   }
 
   return (
-    <div className="space-y-2 p-4">
-      {fields.map((field) => (
-        <CanvasField
-          key={field.id}
-          field={field}
-          isSelected={field.id === selectedFieldId}
-          onSelect={() => selectField(field.id)}
-          onRemove={() => removeField(field.id)}
-          onDuplicate={() => duplicateField(field.id)}
-        />
-      ))}
-    </div>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={fieldIds} strategy={verticalListSortingStrategy}>
+        <div className="space-y-2 p-4">
+          {fields.map((field) => (
+            <SortableField
+              key={field.id}
+              field={field}
+              isSelected={field.id === selectedFieldId}
+              onSelect={() => selectField(field.id)}
+              onRemove={() => removeField(field.id)}
+              onDuplicate={() => duplicateField(field.id)}
+            />
+          ))}
+        </div>
+      </SortableContext>
+    </DndContext>
   );
 }
