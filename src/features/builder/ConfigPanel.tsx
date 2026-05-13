@@ -3,6 +3,8 @@ import type { FormField } from '@/types/fields';
 import TextConfig from './configs/TextConfig';
 import NumberConfig from './configs/NumberConfig';
 import DateConfig from './configs/DateConfig';
+import SingleSelectConfig from './configs/SingleSelectConfig';
+import MultiSelectConfig from './configs/MultiSelectConfig';
 
 const TYPE_LABELS: Record<FormField['type'], string> = {
   'single-line-text': 'Short Text',
@@ -73,6 +75,10 @@ function renderConfig(field: FormField, onChange: (updates: Partial<FormField>) 
       return <NumberConfig field={field} onChange={onChange} />;
     case 'date':
       return <DateConfig field={field} onChange={onChange} />;
+    case 'single-select':
+      return <SingleSelectConfig field={field} onChange={onChange} />;
+    case 'multi-select':
+      return <MultiSelectConfig field={field} onChange={onChange} />;
     default:
       return <p className="text-xs text-gray-400">Configuration coming soon</p>;
   }

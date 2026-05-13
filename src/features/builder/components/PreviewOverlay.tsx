@@ -2,6 +2,8 @@ import type { FormField } from '@/types/fields';
 import TextRenderer from '@/features/fill/renderers/TextRenderer';
 import NumberRenderer from '@/features/fill/renderers/NumberRenderer';
 import DateRenderer from '@/features/fill/renderers/DateRenderer';
+import SingleSelectRenderer from '@/features/fill/renderers/SingleSelectRenderer';
+import MultiSelectRenderer from '@/features/fill/renderers/MultiSelectRenderer';
 
 export default function PreviewOverlay({
   title,
@@ -77,6 +79,10 @@ function renderPreviewField(field: FormField) {
       return <NumberRenderer field={field} onChange={() => {}} />;
     case 'date':
       return <DateRenderer field={field} onChange={() => {}} />;
+    case 'single-select':
+      return <SingleSelectRenderer field={field} onChange={() => {}} />;
+    case 'multi-select':
+      return <MultiSelectRenderer field={field} onChange={() => {}} />;
     default:
       return (
         <div className="rounded-lg border border-gray-200 px-4 py-3">
