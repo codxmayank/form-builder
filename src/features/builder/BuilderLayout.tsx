@@ -55,7 +55,7 @@ export default function BuilderLayout() {
             aria-label="Form title"
           />
           {/* Desktop actions — hidden on mobile */}
-          <div className="hidden shrink-0 items-center gap-2 sm:flex">
+          <div className="ml-auto hidden shrink-0 items-center gap-2 sm:flex">
             <button
               type="button"
               onClick={() => setConfirmingDelete(true)}
