@@ -77,7 +77,7 @@ export default function MultiSelectConfig({
           <button
             type="button"
             onClick={addOption}
-            className="text-xs font-medium text-blue-600 hover:text-blue-800"
+            className="text-xs font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
           >
             + Add
           </button>

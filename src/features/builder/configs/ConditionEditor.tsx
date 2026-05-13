@@ -69,7 +69,7 @@ export default function ConditionEditor({
           type="button"
           onClick={addCondition}
           disabled={targetableFields.length === 0}
-          className="text-xs font-medium text-blue-600 hover:text-blue-700 disabled:text-gray-300"
+          className="text-xs font-medium text-blue-600 hover:text-blue-700 disabled:text-gray-300 dark:text-blue-400 dark:hover:text-blue-300 dark:disabled:text-gray-600"
         >
           + Add
         </button>
@@ -150,7 +150,7 @@ export default function ConditionEditor({
             <button
               type="button"
               onClick={() => removeCondition(condition.id)}
-              className="text-xs text-red-500 hover:text-red-600"
+              className="text-xs text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300"
             >
               Remove
             </button>

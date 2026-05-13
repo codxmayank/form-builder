@@ -91,7 +91,7 @@ export default function InstancesPage() {
           <p className="text-gray-400 dark:text-gray-500">No submissions yet.</p>
           <Link
             to={`/fill/${templateId}`}
-            className="mt-3 inline-block text-sm font-medium text-blue-600 hover:text-blue-700"
+            className="mt-3 inline-block text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             Fill this form &rarr;
           </Link>
@@ -130,7 +130,7 @@ export default function InstancesPage() {
                       <div className="flex justify-end gap-2">
                         <Link
                           to={`/fill/${templateId}/${instance.id}`}
-                          className="text-xs font-medium text-blue-600 hover:text-blue-700"
+                          className="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                         >
                           View
                         </Link>
@@ -144,7 +144,7 @@ export default function InstancesPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingId(instance.id)}
-                          className="text-red-500 hover:text-red-600"
+                          className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300"
                           aria-label="Delete submission"
                         >
                           <svg
