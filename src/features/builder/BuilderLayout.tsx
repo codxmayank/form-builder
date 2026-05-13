@@ -19,6 +19,7 @@ export default function BuilderLayout() {
 
   const [previewing, setPreviewing] = useState(false);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
+  const [mobilePanel, setMobilePanel] = useState<'palette' | 'config' | null>(null);
 
   function save() {
     if (!template) return;
@@ -41,34 +42,51 @@ export default function BuilderLayout() {
 
   return (
     <div className="flex h-[calc(100vh-57px)] flex-col">
-      <div className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-2">
+      <div className="flex items-center justify-between border-b border-gray-200 bg-white px-3 py-2 sm:px-4">
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Untitled Form"
-          className="w-64 border-none bg-transparent text-lg font-semibold text-gray-900 placeholder-gray-400 focus:outline-none"
+          className="w-40 border-none bg-transparent text-base font-semibold text-gray-900 placeholder-gray-400 focus:outline-none sm:w-64 sm:text-lg"
           aria-label="Form title"
         />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Mobile-only panel toggles */}
+          <button
+            type="button"
+            onClick={() => setMobilePanel(mobilePanel === 'palette' ? null : 'palette')}
+            className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:hidden"
+            aria-label="Toggle field palette"
+          >
+            + Fields
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobilePanel(mobilePanel === 'config' ? null : 'config')}
+            className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:hidden"
+            aria-label="Toggle config panel"
+          >
+            Config
+          </button>
           <button
             type="button"
             onClick={() => setConfirmingDelete(true)}
-            className="rounded-lg border border-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50"
+            className="hidden rounded-lg border border-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 sm:inline-flex"
           >
             Delete
           </button>
           <button
             type="button"
             onClick={() => setPreviewing(true)}
-            className="rounded-lg border border-gray-300 px-4 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 sm:px-4 sm:text-sm"
           >
             Preview
           </button>
           <button
             type="button"
             onClick={save}
-            className="relative rounded-lg bg-gray-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-gray-800"
+            className="relative rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 sm:px-4 sm:text-sm"
           >
             Save
             {isDirty && (
@@ -78,14 +96,23 @@ export default function BuilderLayout() {
         </div>
       </div>
 
+      {/* Mobile slide-over panel */}
+      {mobilePanel && (
+        <div className="border-b border-gray-200 bg-white sm:hidden">
+          <div className="max-h-64 overflow-y-auto">
+            {mobilePanel === 'palette' ? <FieldPalette /> : <ConfigPanel />}
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-56 shrink-0 overflow-y-auto border-r border-gray-200 bg-white">
+        <aside className="hidden w-56 shrink-0 overflow-y-auto border-r border-gray-200 bg-white sm:block">
           <FieldPalette />
         </aside>
         <div className="flex-1 overflow-y-auto bg-gray-50">
           <BuilderCanvas />
         </div>
-        <aside className="w-80 shrink-0 overflow-y-auto border-l border-gray-200 bg-white">
+        <aside className="hidden w-80 shrink-0 overflow-y-auto border-l border-gray-200 bg-white md:block">
           <ConfigPanel />
         </aside>
       </div>

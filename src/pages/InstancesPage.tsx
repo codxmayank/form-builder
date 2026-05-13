@@ -47,9 +47,9 @@ export default function InstancesPage() {
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Submissions</h1>
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">Submissions</h1>
           <p className="mt-1 text-sm text-gray-500">{template?.title || 'Loading...'}</p>
         </div>
         <div className="flex gap-2">
@@ -79,8 +79,8 @@ export default function InstancesPage() {
           </Link>
         </div>
       ) : (
-        <div className="mt-6 overflow-hidden rounded-lg border border-gray-200">
-          <table className="w-full text-left text-sm">
+        <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200">
+          <table className="w-full min-w-[500px] text-left text-sm">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-4 py-3 font-medium text-gray-600">#</th>
