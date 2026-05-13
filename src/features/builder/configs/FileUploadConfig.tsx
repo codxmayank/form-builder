@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { FileUploadField } from '@/types/fields';
 
 export default function FileUploadConfig({
@@ -7,6 +8,8 @@ export default function FileUploadConfig({
   field: FileUploadField;
   onChange: (updates: Partial<FileUploadField>) => void;
 }) {
+  const [fileTypesText, setFileTypesText] = useState(field.allowedFileTypes.join(', '));
+
   return (
     <div className="space-y-4">
       <label className="flex items-center gap-2 text-sm">
@@ -29,15 +32,16 @@ export default function FileUploadConfig({
         <input
           id="cfg-filetypes"
           type="text"
-          value={field.allowedFileTypes.join(', ')}
-          onChange={(e) =>
-            onChange({
-              allowedFileTypes: e.target.value
-                .split(',')
-                .map((s) => s.trim())
-                .filter(Boolean)
-            })
-          }
+          value={fileTypesText}
+          onChange={(e) => setFileTypesText(e.target.value)}
+          onBlur={() => {
+            const types = fileTypesText
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean);
+            onChange({ allowedFileTypes: types });
+            setFileTypesText(types.join(', '));
+          }}
           placeholder="e.g. .pdf, .jpg, .png"
           className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-white"
         />
