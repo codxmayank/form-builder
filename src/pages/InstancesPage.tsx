@@ -1,9 +1,10 @@
-import { useParams, Link, Navigate } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { useTemplateStore } from '@/stores/template-store';
 import { getInstancesByTemplate, getInstances, saveInstances } from '@/lib/storage';
 import { exportPdf, exportAllSubmissionsPdf } from '@/lib/pdf-export';
 import ConfirmDialog from '@/components/ConfirmDialog';
+import NotFoundPage from '@/pages/NotFoundPage';
 import type { FormInstance, FormTemplate } from '@/types/template';
 
 function formatDate(iso: string) {
@@ -31,7 +32,7 @@ export default function InstancesPage() {
     [templates, templateId]
   );
 
-  if (templates.length > 0 && !template) return <Navigate to="/" replace />;
+  if (templates.length > 0 && !template) return <NotFoundPage />;
 
   function deleteInstance(id: string) {
     const all = getInstances().filter((i) => i.id !== id);

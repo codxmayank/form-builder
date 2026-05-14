@@ -141,6 +141,7 @@ Things I built that weren't in the exercise but felt necessary for a real produc
 - **Toast notifications** — Success/error feedback on save, submit, and export.
 - **Confirm dialogs** — Destructive actions (delete template, delete response) require confirmation.
 - **Bulk PDF export** — Export all submissions for a template at once from the responses page.
+- **Error Boundaries** — Fallback 404 pages to handle cases when wrong URL is entered and guide user to go to correct page (homepage)
 
 ### Component design
 

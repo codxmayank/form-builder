@@ -1,9 +1,10 @@
-import { useParams, Navigate } from 'react-router';
+import { useParams } from 'react-router';
 import { useEffect, useMemo, useRef } from 'react';
 import { useTemplateStore } from '@/stores/template-store';
 import { useFillStore } from '@/stores/fill-store';
 import { getInstancesByTemplate } from '@/lib/storage';
 import FillLayout from '@/features/fill/FillLayout';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 export default function FillPage() {
   const { templateId, instanceId } = useParams();
@@ -50,7 +51,7 @@ export default function FillPage() {
     };
   }, [loaded, notFound, templates, templateId, instanceId, initForm, reset]);
 
-  if (notFound) return <Navigate to="/" replace />;
+  if (notFound) return <NotFoundPage />;
 
   if (!ready) {
     return (
