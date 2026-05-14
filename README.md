@@ -99,7 +99,7 @@ Two flat arrays — templates and instances. Instances reference templates via `
 
 Templates embed their fields directly — fully self-contained, no joins needed. Form values are a flat `Record<fieldId, FieldValue>` since sections are visual-only. File uploads are metadata-only per spec.
 
-## Architecture Decisions
+## Architectural Decisions
 
 ### Field types as a discriminated union
 
