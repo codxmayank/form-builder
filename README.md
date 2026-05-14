@@ -1,4 +1,4 @@
-# FormCraft — Form Builder SPA
+# Form Builder SPA
 
 A Google Forms-style form builder. Design templates with drag-and-drop, fill them out with live validation, export as PDF. No backend — everything is stored in localStorage.
 
@@ -89,7 +89,7 @@ Three keys total:
 | ------------------------ | ------------------------------- | ---------------------------------- |
 | `form-builder:templates` | `FormTemplate[]`                | All form templates + field configs |
 | `form-builder:instances` | `FormInstance[]`                | Submitted responses by templateId  |
-| `formcraft-theme`        | `'light' \| 'dark' \| 'system'` | Theme preference                   |
+| `form-builder:theme`     | `'light' \| 'dark' \| 'system'` | Theme preference                   |
 
 ### Why this shape
 

@@ -16,7 +16,7 @@ export default function Layout() {
       >
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:px-6 lg:px-8">
           <Link to="/" className="shrink-0 text-xl font-bold text-gray-900 dark:text-white">
-            FormCraft
+            Form Builder
           </Link>
           <nav className="flex items-center gap-2 sm:gap-3" aria-label="Main navigation">
             <ThemeToggle />

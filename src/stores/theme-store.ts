@@ -8,7 +8,7 @@ interface ThemeStore {
 }
 
 function getStoredTheme(): Theme {
-  const stored = localStorage.getItem('formcraft-theme');
+  const stored = localStorage.getItem('form-builder:theme');
   if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
   return 'system';
 }
@@ -22,7 +22,7 @@ function applyTheme(theme: Theme) {
 export const useThemeStore = create<ThemeStore>((set) => ({
   theme: getStoredTheme(),
   setTheme: (theme) => {
-    localStorage.setItem('formcraft-theme', theme);
+    localStorage.setItem('form-builder:theme', theme);
     applyTheme(theme);
     set({ theme });
   }
