@@ -70,7 +70,7 @@ export default function FillLayout() {
 
     const existing = getInstances();
     saveInstances([...existing, instance]);
-    navigate(`/success/${template.id}`);
+    navigate(`/success/${template.id}/${instance.id}`);
   }
 
   function getCalculationValue(field: CalculationField): number | null {

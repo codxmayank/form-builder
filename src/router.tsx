@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
         )
       },
       {
-        path: '/success/:templateId',
+        path: '/success/:templateId/:instanceId',
         element: (
           <LazyPage>
             <SuccessPage />
