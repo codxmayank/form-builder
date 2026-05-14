@@ -2,6 +2,8 @@
 
 A Google Forms-style form builder. Design templates with drag-and-drop, fill them out with live validation, export as PDF. No backend — everything is stored in localStorage.
 
+**Live App:** https://my-form-builder-app.netlify.app/
+
 ## Running Locally
 
 Needs Node.js 18+ and pnpm.
